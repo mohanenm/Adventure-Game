@@ -55,30 +55,22 @@ public class Search {
     int low = 0;
     int high = size - 1;
     final int mid = (low+high)/2;
-   /* while (size>1){
-      if (funding<mid) {
-        high = mid;
+   while (low < high) {
+      if (arr[mid].getFunding() == minFunding) {
+        return Optional.of(mid); 
       }
-      else if (funding > mid){
-        low = mid;
+      else if (arr[mid].getFunding() > minFunding) {
+        high = mid - 1;
       }
-      else if (minFunding = mid) {
-        minFunding = mid;
+      else if (arr[mid].getFunding() < minFunding) {
+        low = mid + 1;
       }
-      else return null;
     }
-    return mid;
-    System.out.println(mid);
-    // Keep going as long as there is more than one item to be checked
-    // Eliminate the wrong half./gradlew  of the array
-    // Return current item only if it meets the condition!
+    
     if (low <= high && arr[low].getFunding() >= minFunding) {
       return Optional.of(low);
     } else {
       return Optional.empty();
-    } */
-      return Optional(-1);
-       
- }
-  
+    }
+  }
 }
