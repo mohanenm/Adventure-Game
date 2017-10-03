@@ -1,7 +1,7 @@
-package edu.luc.cs.cs271.lab2;
+package main.java.edu.luc.cs.cs271.lab2;
 
 /** A sports team. */
-public class Team {
+public class Team{
   /** The team's name. */
   private String name;
 
@@ -16,16 +16,17 @@ public class Team {
     if (name == null) {
       throw new IllegalArgumentException("name is null");
     }
-    // done validity checking for headcoach
+    // DONE validity checking for headcoach
     if (headcoach == null) {
       throw new IllegalArgumentException("headcoach is null");
     }
-    // done validity checking for funding
+    // DONE validity checking for funding
     if (funding <= 0) {
-      throw new IllegalArgumentException("funding is not valid");
+      throw new IllegalArgumentException("funding is invalid");
     }
+    
     this.name = name;
-    // done complete this constructor
+    // DONE complete this constructor
     this.headcoach = headcoach;
     this.funding = funding;
   }
@@ -37,13 +38,13 @@ public class Team {
 
   /** Returns the team's head coach. */
   public String getHeadcoach() {
-    // done complete this method
+    // DONE complete this method
     return headcoach;
   }
 
   /** Returns the team's funding level. */
   public int getFunding() {
-    // done complete this method
+    // DONE complete this method
     return funding;
   }
 }
