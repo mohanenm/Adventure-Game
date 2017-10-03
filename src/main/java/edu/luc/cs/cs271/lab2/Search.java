@@ -8,11 +8,11 @@ public class Search {
   public static Optional<Integer> findTeamPosition(final Team[] arr, final String key) {
     // Gets the array size
     final int size = arr.length;
-    // Runs through a for loop to check
+    // 
     for (int i = 0; i < size; i++) {
-      // Gets the current item at index and compare name to key
+      // 
       if (arr[i].getName().equals(key)) {
-        // Return the index of where the item with key is located
+        // 
         return Optional.of(i);
       }
     }
