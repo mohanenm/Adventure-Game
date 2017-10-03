@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestTeam {
-  
+
   Team makeTeamFixture(final String name, final String headcoach, final int funding) {
     return new Team(name, headcoach, funding);
   }
@@ -18,25 +18,24 @@ public class TestTeam {
       // if we landed here, we're good!
     }
   }
-  
-  // TODO testConstructorValidHeadcoach
-    @Test
+
+  // DONE testConstructorValidHeadcoach
   public void testConstructorValidHeadcoach() {
     try {
       new Team("USA", null, 500);
       fail("should have thrown IllegalArgumentException");
-    } catch (final Throwable ex) {
-     
+      } catch (final Throwable ex) {
+        // if we landed here, we're good!
     }
   }
-  // TODO testConstructorValidFunding
-     @Test
-  public void testConstructorValidHeadcoach() {
+
+  // DONE testConstructorValidFunding
+  public void testConstructorValidFunding() {
     try {
-      new Team("USA","Klinsmann" , 0);
+      new Team("USA", "Klinsmann", 0);
       fail("should have thrown IllegalArgumentException");
-    } catch (final Throwable ex) {
-     
+      } catch (final Throwable ex) {
+        // if we landed here, we're good!
     }
   }
 
@@ -46,19 +45,18 @@ public class TestTeam {
     final Team t = makeTeamFixture(name, "Klinsmann", 500);
     assertEquals(name, t.getName());
   }
-  
-  // d testGetHeadcoach
-   @Test
+
+  // DONE testGetHeadcoach
   public void testGetHeadcoach() {
-    final String name = "Klinsmann";
+    final String headcoach = "Klinsmann";
     final Team t = makeTeamFixture("USA", headcoach, 500);
-    assertEquals(name, t.getHeadcoach());
+    assertEquals(headcoach, t.getHeadcoach());
   }
-  // d testGetFunding
-     @Test
+
+  // DONE testGetFunding
   public void testGetFunding() {
-    final String name = "Klinsmann";
+    final int funding = 500;
     final Team t = makeTeamFixture("USA", "Klinsmann", funding);
-    assertEquals(name, t.getFunding());
+    assertEquals(funding, t.getFunding());
   }
 }

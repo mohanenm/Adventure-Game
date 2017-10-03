@@ -2,9 +2,11 @@ package edu.luc.cs.cs271.lab2;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.*;
+
 
 public class TestSearch {
-  
+
   Team[] makeArrayFixture(final int size) {
     final Team[] array = new Team[size];
     for (int i = 0; i < size; i++) {
@@ -14,16 +16,15 @@ public class TestSearch {
     return array;
   }
 
-  // done makeListFixture
-  list<Team> makeListFixture(final int size) {
+  // DONE makeListFixture
+  List<Team> makeListFixture(final int size) {
     final List<Team> list = new ArrayList<Team>();
     for (int i = 0; i < size; i++) {
       final String s = Integer.toString(i);
-      list.add(new Team("Team " + s, "Coach " + s, i * 100 + 50)); 
+      list.add(new Team("Team " + s, "Coach "+ s, i * 100 + 50));
     }
     return list;
   }
-
 
   @Test
   public void testFindPositionArray0() {
@@ -42,52 +43,61 @@ public class TestSearch {
     final Team[] arr = makeArrayFixture(10);
     assertFalse(Search.findTeamPosition(arr, "Team 11").isPresent());
   }
-  
-  // done: testFindPositionList0, 10s, 10f
-    @Test
+
+  // DONE: testFindPositionList0, 10s, 10f
+  @Test
   public void testFindPositionList0() {
     final List<Team> list = makeListFixture(0);
     assertFalse(Search.findTeamPosition(list, "Team 5").isPresent());
   }
-  
-   @Test
+
+  @Test
   public void testFindPositionList10s() {
-    final List<Team> list = makeListFixture(0);
-    assertFalse(Search.findTeamPosition(list, "Team 5").isPresent());
+    final List<Team> list = makeListFixture(10);
+    assertTrue(Search.findTeamPosition(list, "Team 5").isPresent());
   }
-  
+
   @Test
   public void testFindPositionList10f() {
-    final List<Team> list = makeListFixture(0);
+    final List<Team> list = makeListFixture(10);
     assertFalse(Search.findTeamPosition(list, "Team 11").isPresent());
   }
-  // done: testFindMinFundingArray for several sizes and scenarios
-@Test
-  public void testFindMinFundingArray() {
+
+  // TODO: testFindMinFundingArray for several sizes and scenarios
+  @Test
+  public void testFindMinFundingArray0() {
     final Team[] arr = makeArrayFixture(0);
-    assertFalse(Search.findTeamMinFunding(arr, 50).isPresent());
+    assertFalse(Search.findTeamMinFunding(arr, 250).isPresent());
   }
   
   @Test
-  public void testFindMinFundingArray() {
-    final Team[] arr = makeArrayFixture(10);
-    assertFalse(Search.findTeamMinFunding(arr, 300).isPresent());
+  public void testFindMinFundingArray8s() {
+    final Team[] arr = makeArrayFixture(8);
+    assertTrue(Search.findTeamMinFunding(arr, 250).isPresent());
   }
   
   @Test
-  public void testFindMinFundingArray() {
-    final Team[] arr = makeArrayFixture(10);
-    assertFalse(Search.findTeamMinFunding(arr, 900).isPresent());
+  public void testFindMinFundingArray4f() {
+    final Team[] arr = makeArrayFixture(4);
+    assertTrue(Search.findTeamMinFunding(arr, 400).isPresent());
   }
-  // done: testFindMinFundingArrayFast for several sizes and scenarios
+
+  // TODO: testFindMinFundingArrayFast for several sizes and scenarios
+  @Test
+  public void testFindMinFundingArrayFast0() {
+    final Team[] arr = makeArrayFixture(0);
+    assertFalse(Search.findTeamMinFundingFast(arr, 250).isPresent());
+  }
+  
    @Test
-  public void testFindMinFundingArrayFast() {
-    final Team[] arr = makeArrayFixture(10);
-    assertFalse(Search.findTeamMinFunding(arr, 900).isPresent());
+  public void testFindMinFundingArrayFast8s() {
+    final Team[] arr = makeArrayFixture(8);
+    assertTrue(Search.findTeamMinFundingFast(arr, 250).isPresent());
   }
-  @Test
-  public void testFindMinFundingArrayFast() {
-    final Team[] arr = makeArrayFixture(10);
-    assertFalse(Search.findTeamMinFunding(arr, 500).isPresent());
+  
+   @Test
+  public void testFindMinFundingArrayFast4f() {
+    final Team[] arr = makeArrayFixture(4);
+    assertFalse(Search.findTeamMinFundingFast(arr, 500).isPresent());
   }
 }
