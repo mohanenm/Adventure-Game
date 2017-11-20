@@ -1,36 +1,11 @@
-# COMP 271 F17 002 Lab 2
+# Adventure Game By: Nicholas Carsello, Kurt Diall, and Ethan Mohan
+The final project group consists of Nicholas Carsello, Kurt Diall, and Ethan Mohan. The email of Nicholas Carsello is ncarsello@luc.edu. Outside class, we will make meetings Wednesday and Thursday nights weekly and through Google Docs and Slack as well.
 
-# Team project
+In our adventure game, our user will come across obstacles while embarking on a journey. They will make choices and the end result will be decided on what they choose. Some of these obstacles will be choosing where to go, what to eat, what to do when encountering another person, et cetera. The user will come across some items along the way and store them, including food, weapons, and gifts possibly.
 
-Work in teams of two
+This game will be in Java. It will involve a queue list in regards to collecting the items. It will also involve linked lists, since there will be more than one possibility for the outcome.
 
-# Objectives
-
-An understanding of the following concepts and techniques:
-
-- entity objects
-- linear search
-- binary search
-- algorithmic complexity
-- arrays versus lists
-- [optional values](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)
-- DRY and factoring out methods
-- final-correctness
-- automated unit testing using JUnit
-- testing for exceptions
-- test fixtures and assertions
-
-# Instructions
-
-1. Review the code.
-2. Run the code for various inputs to gain an understanding of what it does.
-3. Complete the items marked TODO in the code and get the tests to pass.
-4. Create a markdown document called Answers.md and answer the questions in the next section.
-
-# Questions
-
-- What is the complexity of each of the four search methods in terms of array or list size n?
-- What happens in the case of binary search if the array is not sorted?
-- What is the purpose of constructor argument validity checking?
-- What is the purpose of using the keyword `final` with variables and arguments?
-- What are alternatives to using `Optional` and how do they compare?
+Possible milestones would be working on completing individual scenarios, hopefully in two weeks time. Another milestone would be linking individual files together.
+￼
+The game will go something alone the lines of this.
+ Photo from: http://vignette4.wikia.nocookie.net/mud/images/3/35/ADVENT_--_Will_Crowther%27s_original_version.png/revision/latest?cb=20090112223957
