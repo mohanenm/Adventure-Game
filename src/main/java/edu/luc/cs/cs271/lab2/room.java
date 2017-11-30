@@ -1,5 +1,4 @@
-import java.util.Vector;
-import java.util.Enumeration;
+import java.util.*
 
 //room - gaming location
 public class room
@@ -7,19 +6,17 @@ public class room
 	// Member variables
 	private String m_roomTitle;
 	private String m_roomDescription;
-	private Vector m_vecExits;
+	private Stack<roomState> stateStack;
 
 	// Blank constructor
-	public Location()
+	public room()
 	{
 		// Blank title + description
 		m_roomTitle = new String ();
 		m_roomDescription = new String();
-		m_vecExits = new Vector();
-	}
-
-	// Partial constructor
-	public Location( String title )
+}
+   // Partial constructor
+	public room( String title )
 	{
 		// Assign title
 		m_roomTitle = title;
@@ -30,68 +27,121 @@ public class room
 		// Blank exits
 		m_vecExits = new Vector();
 	}
-
 	// Full constructor
-	public Location( String title, String description )
+	public Location( String title, String description, Stack<roomState> sStack)
 	{
 		// Assign title + description
 		m_roomTitle = title;
 		m_roomDescription = description;
-
-		// Blank exits
-		m_vecExits = new Vector();
+		stateStack = sStack;
 	}
-
+	
+	public getStateStack(){
+	    return stateStack;
+	}
 	// toString method
 	public String toString()
 	{
 		return m_roomTitle;
 	}
-
-	// Adds an exit to this location
-	public void addExit ( Exit exit )
-	{
-		m_vecExits.addElement (exit);
-	}
-
-	// Removes an exit from this location
-	public void removeExit ( Exit exit )
-	{
-		if (m_vecExits.contains (exit))
-		{
-			m_vecExits.removeElement (exit);
-		}
-	}
-
-	// Returns a vector of exits
-	public Vector getExits ()
-	{
-		// Return a clone, as we don't want an external
-		// object to modify our original vector
-		return (Vector) m_vecExits.clone();
-	}
-	
 	// Returns location title
 	public String getTitle()
 	{
 		return m_roomTitle;
 	}
-
 	// Assigns location title
 	public void setTitle( String roomTitle )
 	{
 		m_roomTitle = roomTitle;
 	}
-
 	// Returns location description
 	public String getDescription()
 	{
 		return m_roomDescription;
 	}
-
 	// Assigns location description
 	public void setDescription( String roomDescription )
 	{
 		m_roomDescription = roomDescription;
 	}
 }
+/*
+ public class statesStack<Item> implements Iterable<Item> {
+    private int n;          // size of the stack
+    private Node first;     // top of stack
+
+    // helper linked list class
+    private class Node {
+        private Item item;
+        private Node next;
+    }
+
+   /**
+     * Initializes an empty stack.
+    
+       @Override
+    public Stack() {
+        first = null;
+        n = 0;
+    }
+    /*
+     * Returns the number of items in this stack.
+     */
+     /*
+       @Override
+    public int size() {
+        return n;
+        system.out.println("You have"  +  return size + "objectives to complete");
+    }
+
+    /*
+     * Adds the item to this stack.
+     */
+     /*
+       @Override
+    public void push(Item item) {
+        Node oldfirst = first;
+        first = new Node();
+        first.item = item;
+        first.next = oldfirst;
+        n++;
+        
+    s.push("state");
+    s.push("state");
+    s.push("state");
+    }
+
+    /*
+      Removes and returns the item most recently added to this stack.
+     */
+    /*    @Override
+    public Item pop() {
+        if (isEmpty()) throw new NoSuchElementException("You have completed all objectives");
+        Item item = first.item;        // save item to return
+        first = first.next;            // delete first node
+        n--;
+        return item;                   // return the saved item
+    }
+    /*
+      Returns an iterator to this stack that iterates through the items in LIFO order.
+    
+ 
+      @Override
+    public Iterator<Item> iterator()  { return new ListIterator();  }
+
+    //iterator
+      @Override
+    private class ListIterator implements Iterator<Item> {
+        private Node current = first;
+        public boolean hasNext()  { return current != null;                     }
+        public void remove()      { throw new UnsupportedOperationException();  }
+
+        public Item next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            Item item = current.item;
+            current = current.next; 
+            return item;
+        }
+    }
+
+ */
