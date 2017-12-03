@@ -35,4 +35,8 @@ tasks.withType(JavaCompile) {
 
 tasks.withType(JavaExec) {
     jvmArgs << "-enableassertions"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ffe30b09a238d7b86714b1eb4563d6a570448f3f
