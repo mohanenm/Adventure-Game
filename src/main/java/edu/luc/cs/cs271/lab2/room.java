@@ -1,28 +1,36 @@
-package main.java.edu.luc.cs.cs271.advent;
+package edu.luc.cs.cs271.lab2;
 
 import java.util.*;
 
-//room - gaming location
+/*
+room - gaming location
+*/
 public class room {
   // Member variables
   private String m_roomTitle;
   private String m_roomDescription;
   private Stack<roomState> stateStack;
 
-  // Blank constructor
+  /*
+  Blank constructor
+  */
   public room() {
-    // Blank title + description
+    /*
+    Blank title + description
+    */
     m_roomTitle = new String();
     m_roomDescription = new String();
   }
-  // Partial constructor
+  /*
+   *Partial constructor
+   * Assign title
+   *Blank description
+   * removed all vectors, not using that implementation
+   */
   public room(String title) {
-    // Assign title
-    m_roomTitle = title;
-    // Blank description
-    m_roomDescription = new String();
-    // removed all vectors, not using that implementation
 
+    m_roomTitle = title;
+    m_roomDescription = new String();
   }
   // Full constructor
   public room(String title, String description, Stack<roomState> sStack) {

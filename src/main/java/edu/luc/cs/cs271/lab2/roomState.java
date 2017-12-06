@@ -1,9 +1,9 @@
-package main.java.edu.luc.cs.cs271.advent;
+package edu.luc.cs.cs271.lab2;
 
 import java.util.*;
 
 public class roomState {
-  //LinkedStack<String> stack = new LinkedStack<String>()
+  // LinkedStack<String> stack = new LinkedStack<String>()
   String[] objectsInScene;
   Map<playerInput, String> validInputs;
 
@@ -20,6 +20,9 @@ public class roomState {
     for (playerInput vInput : validInputs.keySet()) {
       if (vInput == input) {
         System.out.println(validInputs.get(vInput));
+        // if(input. == "go"){
+
+        // }
       }
     }
   }

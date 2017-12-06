@@ -1,9 +1,9 @@
-package main.java.edu.luc.cs.cs271.advent;
+package edu.luc.cs.cs271.lab2;
 
 import java.util.*;
 
 public class Main {
-  public static void Main(String args) {
+  public static void main(String[] args) {
     String[] verbArr;
     Map<playerInput, String> inputMap;
     Stack<roomState> roomStack;

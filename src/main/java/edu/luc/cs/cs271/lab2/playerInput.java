@@ -1,6 +1,10 @@
-package main.java.edu.luc.cs.cs271.advent;
-//The player input class is a way of containing user inputted data in a way that's readable by other methods.
-//It stores what verb the player is trying to use, as well as up to two objects they're using in conjunction with that action.
+// The player input class is a way of containing user inputted data in a way that's readable by
+// other methods.
+// It stores what verb the player is trying to use, as well as up to two objects they're using in
+// conjunction with that action.
+
+package edu.luc.cs.cs271.lab2;
+
 public class playerInput {
   String verb;
   String objectA;

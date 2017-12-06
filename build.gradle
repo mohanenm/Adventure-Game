@@ -1,3 +1,8 @@
+/*  
+*was having major difficulties with  main class and dependencies, after writing the page,
+the problems were gone, I cross checked both pages....there were formatting errors on the
+first page
+*/
 buildscript {
     repositories {
         maven { url "https://plugins.gradle.org/m2/" }
@@ -13,7 +18,7 @@ apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'com.github.sherter.google-java-format'
 
 libsDirName = 'lib' // simple workaround for error in startScripts task
-mainClassName = 'edu.luc.cs271.advent.Main' // TODO change this setting to match your main class
+mainClassName = "edu.luc.cs.cs271.lab2.Main"
 
 jar {
     manifest {
@@ -35,8 +40,13 @@ tasks.withType(JavaCompile) {
 
 tasks.withType(JavaExec) {
     jvmArgs << "-enableassertions"
-<<<<<<< HEAD
 }
-=======
+
+run {
+    standardInput = System.in
+    standardOutput = System.out
 }
->>>>>>> ffe30b09a238d7b86714b1eb4563d6a570448f3f
+
+googleJavaFormat {
+    toolVersion = '1.4'
+}

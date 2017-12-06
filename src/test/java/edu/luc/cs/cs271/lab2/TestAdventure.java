@@ -1,58 +1,61 @@
+package edu.luc.cs.cs271.lab2;
 
-
-/* package main.java.edu.luc.cs.cs271.advent;
+import static org.junit.Assert.*;
 
 import java.util.*;
-import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestAdventure{
+public class TestAdventure {
 
-    String[] verbArr;
-    Map<playerInput, String> inputMap;
-    Stack<roomState> roomStack;
+  String[] strArr;
+  String[] verbArr;
+  String[] objStr;
+  playerInput testInput;
+  Map<playerInput, String> inputMap;
+  Stack<roomState> roomStack;
+  room fixtureA;
+  character fixtureB;
 
-@Before
-public void setUp(){
+  @Before
+  public void setUp() {
     verbArr = new String[2];
-    verbArr[0] = "Look";
-    verbArr[1] = "Use";
+    verbArr[0] = "look";
+    verbArr[1] = "use";
 
     String[] strArr = new String[2];
-    strArr[0] = "Lever";
-    strArr[1] = "Box";
+    strArr[0] = "lever";
+    strArr[1] = "box";
     inputMap = new HashMap<playerInput, String>();
-    inputMap.put(new playerInput("Look"), "You see a Room");
-    inputMap.put(new playerInput("Use").setObjectA("Lever"), "You hear the sound of mechnaisms working");
+    inputMap.put(new playerInput("look"), "You see a Room");
+    testInput = new playerInput("use");
+    testInput.setObjectA("lever");
+    inputMap.put(testInput, "You hear the sound of mechanisms working");
     roomStack = new Stack<roomState>();
     roomStack.push(new roomState(objStr, inputMap));
 
-    room fixtureA = new room ("Test Room", "A Room Used for Testing", roomStack);
-    character fixtureB = new character(verbArr, new String[2], fixtureA);
-}
+    fixtureA = new room("Test Room", "A Room Used for Testing", roomStack);
+    fixtureB = new character(verbArr, new String[2], fixtureA);
+  }
 
-@After
-public void tearDown(){
+  @After
+  public void tearDown() {
     verbArr = null;
     strArr = null;
     fixtureA = null;
     fixtureB = null;
-}
+  }
 
-@Test
-public void testCharacterParser(){
+  @Test
+  public void testCharacterParser() {
     fixtureB.parseText("Use Lever");
+  }
 
+  @After
+  public void charactertest() {
+    ;
+    // assertEquals(,);
+    // assertEquals(,);
+  }
 }
-
-@After
-public void charactertest(){;
-//assertEquals(,);
-//assertEquals(,);
-}
-
-}
-
-*/
