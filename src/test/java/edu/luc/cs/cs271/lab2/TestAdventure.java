@@ -36,7 +36,7 @@ public class TestAdventure {
     roomStack.push(new roomState(objStr, inputMap));
 
     fixtureA = new room("Test Room", "A Room Used for Testing", roomStack);
-    fixtureB = new character(verbArr, new String[2], fixtureA);
+    fixtureB = new character(verbArr, new String[2], fixtureA, new room[5][5]);
   }
 
   @After
@@ -50,12 +50,5 @@ public class TestAdventure {
   @Test
   public void testCharacterParser() {
     fixtureB.parseText("Use Lever");
-  }
-
-  @After
-  public void charactertest() {
-    ;
-    // assertEquals(,);
-    // assertEquals(,);
   }
 }

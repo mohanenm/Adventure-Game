@@ -59,9 +59,12 @@ public class room {
   public String getDescription() {
     return m_roomDescription;
   }
+
+  public void printDescription() {
+    System.out.println(m_roomDescription);
+  }
   // Assigns location description
   public void setDescription(String roomDescription) {
     m_roomDescription = roomDescription;
   }
 }
-

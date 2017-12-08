@@ -6,19 +6,21 @@ import java.util.*;
 // to turn
 // the text the user inputs into readable commands for methods to use via the 'parse Text' method.
 public class character {
+  room[][] roomGrid;
   String[] validVerbs = new String[15];
-  String[] inventory = new String[5];
+  LinkedList<String> inventory = new LinkedList<String>();
   String[] temp;
   roomState currentRoomState;
   room currentRoom;
   playerInput currentInput;
   Scanner pInput = new Scanner(System.in);
 
-  public character(String[] verbs, String[] inv, room curRoom) {
+  public character(String[] verbs, String[] inv, room curRoom, room[][] grid) {
     validVerbs = verbs;
     inventory = inv;
     currentRoom = curRoom;
     currentRoomState = currentRoom.getStateStack().peek();
+    roomGrid = grid;
   }
 
   // Returns the last playerInput 'parseText()' was able to create
@@ -35,7 +37,8 @@ public class character {
     /*Go word-by-word, looking for anything that matches either A. an established Verb or B. an Object currently available (in the scene or in the inventory)
      *When it detects the first verb it creates an input object
      *And when it detects the first two objects, it assings them as objectA and objectB respectively
-     *Once it either has iteratred through the whole string or filled the object B slot, it sends this input on to the current roomstate using prepOutput()
+     *Once it either has iteratred through the whole string or filled the object B slot, it sends this input on to the current roomstate using prepOutput().
+     *In certain cases that change the gamestate outside of the current room state, such as moving between rooms or performing an action that
      */
     temp = input.split("\\s+");
     currentInput = null;
@@ -53,34 +56,57 @@ public class character {
         // Is this specific word in the players inventory? If not, keeping going.
         for (String object : inventory) {
           if (input == object) {
-            currentInput = new playerInput(input);
+            currentInput.setObjectA(input);
             break;
           }
         }
         // Is this specific word in the roomStates objects? If not, keep going.
         for (String object : currentRoomState.objectsInScene) {
           if (input == object) {
-            currentInput = new playerInput(input);
+            currentInput.setObjectA(input);
             break;
           }
+        }
+
+        if (input == "north" || "south" || "east" || "west") {
+          currentInput.setObjecA(input);
         }
       } else if (currentInput.getObjectB() == null) {
         // Is this specific word in the players inventory? If not, keeping going.
         for (String object : inventory) {
           if (input == object) {
-            currentInput = new playerInput(input);
+            currentInput.setObjectB(input);
             break;
           }
         }
         // Is this specific word in the roomStates objects? If not, keep going.
         for (String object : currentRoomState.getObjects()) {
           if (input == object) {
-            currentInput = new playerInput(input);
+            currentInput.getObjectB(input);
             break;
           }
         }
       }
     }
-    currentRoomState.prepOutput(currentInput);
+    if (currentInput.getVerb == go) {
+      if (input.getObjectA() == "north") {
+        go(1, 0);
+      } else if (input.getObjectA() == "east") {
+        go(0, 1);
+      } else if (input.getObjectA() == "south") {
+        go(-1, 0);
+      } else if (input.getObjectA() == "west") {
+        go(0, -1);
+      }
+    } else if (currentInput.getVerb == "Pick") {
+      for (String str : currentRoomState.getObjects()) {
+        if (currentInput.getObjectA == str) {
+          inventory.add(currentInput.getObjectA());
+          System.out.println("You pick up " + currentInput.getObjectA());
+        }
+      }
+    } else {
+      currentRoomState.prepOutput(currentInput);
+    }
   }
 }
