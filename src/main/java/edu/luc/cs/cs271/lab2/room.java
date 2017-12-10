@@ -43,10 +43,11 @@ public class room {
   public Stack<roomState> getStateStack() {
     return stateStack;
   }
-  // toString method
+  /* // toString method
   public String toString() {
     return m_roomTitle;
-  }
+  } */
+
   // Returns location title
   public String getTitle() {
     return m_roomTitle;
@@ -63,8 +64,11 @@ public class room {
   public void printDescription() {
     System.out.println(m_roomDescription);
   }
+
+  /*
   // Assigns location description
   public void setDescription(String roomDescription) {
     m_roomDescription = roomDescription;
   }
+  */
 }
