@@ -10,33 +10,49 @@ public class character {
   room[][] roomGrid;
   int xGridPosition = 0;
   int yGridPosition = 0;
-  String[] validVerbs = new String[15];
-  LinkedList<String> inventory = new LinkedList<String>();
-  String[] temp;
+  String[] validVerbs;
+  LinkedList<String> inventory;
+  String[] cardinalDirections;
+  String[] inputArr;
   roomState currentRoomState;
   room currentRoom;
   playerInput currentPlayerInput;
-  Scanner pInput = new Scanner(System.in);
 
-  public character(String[] verbs, LinkedList<String> inv, room curRoom, room[][] grid) {
+  public character(String[] verbs, LinkedList<String> inv, room[][] grid) {
     validVerbs = verbs;
     inventory =
         inv; // incompitable; do you want the string list to be turned into a string? or what?
-    currentRoom = curRoom;
+    currentRoom = grid[0][0];
     currentRoomState = currentRoom.getStateStack().peek();
     roomGrid = grid;
+    cardinalDirections = new String[] {"north", "south", "east", "west"};
   }
 
-  void go(int vert, int horz) {}
+  void go(int horz, int vert) {
+    yGridPosition += vert;
+    xGridPosition += horz;
+    currentRoom = roomGrid[xGridPosition][yGridPosition];
+    currentRoomState = currentRoom.getStateStack().peek();
+    System.out.println(currentRoomState.getDescription());
+  }
+
+  public LinkedList<String> getInv() {
+    return inventory;
+  }
 
   String getSurroundingRoomDesc() {
     // Gets the short descriptions/names of the rooms surrounding the current room
-    return null;
+
+    return "";
   }
 
   // Returns the last playerInput 'parseText()' was able to create
   public playerInput getLastInput() {
     return currentPlayerInput;
+  }
+
+  public String[] getInputArray() {
+    return inputArr;
   }
 
   // Takes in a string from the user, and searches for certain keywords. It then turns those
@@ -46,37 +62,44 @@ public class character {
   // other classes to 'know' what the player is attempting to do.
 
   public void handlePlayerIO(String input) {
-    temp = input.split("\\s+");
+    inputArr = input.split(" ");
     currentPlayerInput = null;
 
-    convertIOToPlayerInput(temp);
-
-    if ((currentPlayerInput.getVerb() == "go")
-        || (currentPlayerInput.getVerb() == "pick")
-        || (currentPlayerInput.getVerb() == "look")) {
+    currentPlayerInput = convertIOToPlayerInput(inputArr);
+    if(currentPlayerInput != null){
+      if ((currentPlayerInput.getVerb() == "go")
+      || (currentPlayerInput.getVerb() == "pick")
+      || (currentPlayerInput.getVerb() == "look")) {
       handleKeywords();
-    }
-
-    if (currentPlayerInput.getVerb() != "go") {
-      if (currentRoomState.getRoomResponse(currentPlayerInput)) {
-        currentRoom.getStateStack().pop();
-        currentRoomState = currentRoom.getStateStack().peek();
-        System.out.println(currentRoomState.getDescription());
       }
+
+      if (currentPlayerInput.getVerb() != "go") {
+        if (currentRoomState.getRoomResponse(currentPlayerInput)) {
+          currentRoom.getStateStack().pop();
+          currentRoomState = currentRoom.getStateStack().peek();
+          System.out.println(currentRoomState.getDescription());
+        }
+      }
+    }else{
+      System.out.println("I didn't understand that");
     }
   }
 
   private void handleKeywords() {
     if (currentPlayerInput.getVerb() == "go") {
+      go(0, 1);
+
+      /*
       if (currentPlayerInput.getObjectA() == "north") {
-        go(1, 0);
-      } else if (currentPlayerInput.getObjectA() == "east") {
         go(0, 1);
+      } else if (currentPlayerInput.getObjectA() == "east") {
+        go(1, 0);
       } else if (currentPlayerInput.getObjectA() == "south") {
-        go(-1, 0);
-      } else if (currentPlayerInput.getObjectA() == "west") {
         go(0, -1);
+      } else if (currentPlayerInput.getObjectA() == "west") {
+        go(-1, 0);
       }
+      */
     } else if (currentPlayerInput.getVerb() == "pick") {
       for (String str : currentRoomState.getObjects()) {
         if (currentPlayerInput.getObjectA() == str) {
@@ -97,52 +120,42 @@ public class character {
    *In certain cases that change the gamestate outside of the current room state, such as moving between rooms or performing an action that
    */
 
-  private void convertIOToPlayerInput(String[] input) {
-    for (String word : input) {
-      // Is this specific word a verb we have? If not, keep going
-      if (currentPlayerInput == null) {
-        for (String verb : validVerbs) {
-          if (word == verb) {
-            currentPlayerInput = new playerInput(word);
-            break;
-          }
-        }
-      } else if (currentPlayerInput.getObjectA() == null) {
-        // Is this specific word in the players inventory? If not, keeping going.
-        for (String object : inventory) {
-          if (word == object) {
-            currentPlayerInput.setObjectA(word);
-            break;
-          }
-        }
-        // Is this specific word in the roomStates objects? If not, keep going.
-        for (String object : currentRoomState.objectsInScene) {
-          if (word == object) {
-            currentPlayerInput.setObjectA(word);
-            break;
-          }
-        }
+  private playerInput convertIOToPlayerInput(String[] args) {
+    String[] inputStaging = new String[3];
+    for (int i = 0; i < args.length; i++) {
+      if (Arrays.asList(validVerbs).contains(args[i])) {
+        inputStaging[0] = args[i];
+        continue;
       }
-
-      if ((word == "north") || (word == "south") || (word == "east") || (word == "west")) {
-        // == has higher priority, error fixed
-        currentPlayerInput.setObjectA(word);
-      } else if (currentPlayerInput.getObjectB() == null) {
-        // Is this specific word in the players inventory? If not, keeping going.
-        for (String object : inventory) {
-          if (word == object) {
-            currentPlayerInput.setObjectB(word);
-            break;
-          }
-        }
-        // Is this specific word in the roomStates objects? If not, keep going.
-        for (String object : currentRoomState.getObjects()) {
-          if (word == object) {
-            currentPlayerInput.setObjectB(word);
-            break;
-          }
+      if (Arrays.asList(cardinalDirections).contains(args[i])) {
+        inputStaging[1] = args[i];
+        break;
+      }
+      if (inputStaging[0] != null
+          && (currentRoomState.getObjects().contains(args[i]) || inventory.contains(args[i]))) {
+        if (inputStaging[1] == null) {
+          inputStaging[1] = args[i];
+          continue;
+        } else {
+          inputStaging[2] = args[i];
+          break;
         }
       }
     }
+
+    if (inputStaging[0] != null) {
+      if (inputStaging[1] != null) {
+        if (inputStaging[2] != null) {
+          return new playerInput(inputStaging[0], inputStaging[1], inputStaging[2]);
+        }
+        return new playerInput(inputStaging[0], inputStaging[1]);
+      }
+      return new playerInput(inputStaging[0]);
+    }
+    return null;
+  }
+
+  public room getCurrentRoom() {
+    return currentRoom;
   }
 }

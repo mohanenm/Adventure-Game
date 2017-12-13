@@ -10,13 +10,28 @@ public class playerInput {
   String objectA;
   String objectB;
 
+  public playerInput() {
+    verb = null;
+    objectA = null;
+    objectB = null;
+  }
+
   public playerInput(String predicate) {
     verb = predicate;
+    objectA = null;
+    objectB = null;
   }
 
   public playerInput(String predicate, String thingA) {
     verb = predicate;
     objectA = thingA;
+    objectB = null;
+  }
+
+  public playerInput(String predicate, String thingA, String thingB) {
+    verb = predicate;
+    objectA = thingA;
+    objectB = thingB;
   }
 
   public void setObjectA(String thingA) {
@@ -37,6 +52,10 @@ public class playerInput {
 
   public String getVerb() {
     return verb;
+  }
+
+  public void setVerb(String predicate) {
+    verb = predicate;
   }
 
   public boolean equals(playerInput other) {
