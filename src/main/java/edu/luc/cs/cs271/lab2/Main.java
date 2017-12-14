@@ -23,66 +23,102 @@ public class Main {
           "SOUTH to travel into the west-most room",
           "USE to utilize a certain object,",
           "PICK to pick up an object,",
-          "LOOK to receive a description of the room in which you are located,",
+          "LOOK to receive a description of the room in which you are located",
+          "GRAB to grab an item",
+          "FIX to fix things like a broken generator",
           "HELP to revisit this list of commands",
           "Q to quit",
           "The use of any other verbs will not work and you will be prompted to re-enter your command",
         };
 
     if ((answer == 'y') || (answer == 'Y')) {
-      for (int i = 0; i < 9; i++) {
+      for (int i = 0; i < 14; i++) {
         System.out.printf(commands[i] + "\n");
       }
-    } else{
+    } else {
       System.out.printf("your loss");
       return;
     }
-     while (true){
+    while (true) {
       playerInput = scan.next();
       playerInput.toLowerCase();
       playerCharacter.handlePlayerIO(playerInput);
-    } 
+    }
   }
 
-  // TEST CODE, PLEASE IGNORE
+  // Hey Nick, this should be set up. Feel free to text me any questions
+  @SuppressWarnings("all")
   public static character setup() {
-    LinkedList<String> objArr;
-    String[] verbArr;
-    room[][] roomGrid;
+    LinkedList<String> roomOneObj;
+    LinkedList<String> roomTwoObj;
+
+    room[][] roomGrid; //the rooms are represented by the multidimensional array
     LinkedList<String> invLs;
-    playerInput testInput;
-    Map<playerInput, String> inputMap;
 
-    verbArr = new String[7];
-    verbArr[0] = "look";
-    verbArr[1] = "use";
-    verbArr[2] = "pick";
-    verbArr[3] = "east";
-    verbArr[4] = "west";
-    verbArr[5] = "north";
-    verbArr[6] = "south";
+    Map<playerInput, String> inputMapThree;
 
-    objArr = new LinkedList<String>();
-    objArr.add("lever");
-    objArr.add("box");
+    String[] verbArr = new String[] {"pick", "grab", "use", "look", "fix"};
 
+    // as we never implimented a command to read out the player's inventory, we're not touching
+    // this.
     invLs = new LinkedList<String>();
-    invLs.add("matches");
-    invLs.add("flashlight");
-    inputMap = new HashMap<playerInput, String>();
-    testInput = new playerInput("use", "lever");
-    inputMap.put(testInput, "You hear the sound of mechanisms working");
-    Stack roomStack = new Stack<roomState>();
-    roomStack.push(new roomState(objArr, inputMap, testInput));
-    roomStack.push(new roomState(objArr, inputMap, testInput));
 
-    roomGrid = new room[2][2];
-    roomGrid[0][0] = new room("Test Room", "A Room Used for Testing", roomStack);//instead of roomStack, maybe a roomState?
-    roomGrid[0][1] = new room("Test RoomB", "Another Room Used for Testing", roomStack);
+    // Objects in RoomState One
+    roomOneObj = new LinkedList<String>();
+    roomOneObj.add("Dresser with open drawer and light on top");
+    roomOneObj.add("Light bulb");
+    roomOneObj.add("lamp"); // A is whateer items we want to add to the room, noting that
+    // you have to describe
+    // what's in the room using the roomState's description
+    // repeat as needed
+    roomOneObj.add("light-bulb");
+
+    // Objects in RoomState Two
+    roomTwoObj = new LinkedList<String>();
+    roomTwoObj.add(
+        "chair"); // A is whatever items we want to add to the room, noting that you have to
+    // describe
+    // what's in the room using the roomState's description
+
+    Map<playerInput, String> inputMapOne = new HashMap<playerInput, String>();
+    Map<playerInput, String> inputMapTwo = new HashMap<playerInput, String>();
+    inputMapOne.put(
+        new playerInput("look"),
+        "You see a dresser with an open drawer and a lamp on top infront of you, Inside, there is a light bulb"); // Use this to assign a certain response to a
+
+    inputMapTwo.put(new playerInput("grab"), "Nice");
+
+    // certain playerInput. REMEMBER! You only need
+    // the verb in playerInput, the other two
+    // strings are optional.
+    // repeat as needed.
+
+    Stack roomStackOne = new Stack();
+    Stack roomStackTwo = new Stack();
+    roomStackOne.push(
+        new roomState(
+            roomOneObj,
+            inputMapOne,
+            new playerInput(
+                "grab",
+                "look"))); // This player input is the trigger for changing to the next room state
+    roomStackTwo.push(
+        new roomState(
+            roomTwoObj,
+            inputMapTwo,
+            new playerInput("This isn't a valid verb"))); // Don't change this.
+
+    roomGrid = new room[1][1];
+    roomGrid[0][0] =
+        new room(
+            "Bedroom with a dresser",
+            "You enter the room and push the dresser drawer closed",
+            roomStackOne); // Just fill in  a basic title in A and a basic description in B, they
+    // don't
+    // actually come up in this demo
 
     character fixture = new character(verbArr, invLs, roomGrid);
 
     return fixture;
-  } 
-
+  }
 }

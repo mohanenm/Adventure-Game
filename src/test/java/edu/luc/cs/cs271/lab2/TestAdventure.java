@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.util.*;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 
 public class TestAdventure {
 
@@ -54,26 +53,26 @@ public class TestAdventure {
     objArr = null;
     fixture = null;
   }
-
-  @Test
-  public void testCharacterParser() {
-    fixture.handlePlayerIO("use lever");
-    assertEquals(testInput.getVerb(), fixture.getLastInput().getVerb());
-    assertEquals(testInput.getObjectA(), fixture.getLastInput().getObjectA());
-    assertEquals(testInput.getObjectB(), fixture.getLastInput().getObjectB());
-  }
   /*
-  @Test
-  public void testCharacterMovement() {
-    fixture.handlePlayerIO("go north");
-    //assertEquals(roomGrid[0][0], fixture.getCurrentRoom());
-    //assertEquals(roomGrid[0][1], fixture.getCurrentRoom());
-  }
+   @Test
+   public void testCharacterParser() {
+     fixture.handlePlayerIO("use lever");
+     assertEquals(testInput.getVerb(), fixture.getLastInput().getVerb());
+     assertEquals(testInput.getObjectA(), fixture.getLastInput().getObjectA());
+     assertEquals(testInput.getObjectB(), fixture.getLastInput().getObjectB());
+   }
 
-  @Test
-  public void testCharacterPickUp() {
-    fixture.handlePlayerIO("pick up box");
-    // assertEquals(true, fixture.getInv().contains("box"));
-  }
+   @Test
+   public void testCharacterMovement() {
+     fixture.handlePlayerIO("go north");
+     //assertEquals(roomGrid[0][0], fixture.getCurrentRoom());
+     //assertEquals(roomGrid[0][1], fixture.getCurrentRoom());
+   }
+
+   @Test
+   public void testCharacterPickUp() {
+     fixture.handlePlayerIO("pick up box");
+     // assertEquals(true, fixture.getInv().contains("box"));
+   }
   */
 }

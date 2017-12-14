@@ -18,7 +18,7 @@ public class character {
   room currentRoom;
   playerInput currentPlayerInput;
 
-  public character(String[] verbs, LinkedList<String> inv, room[][] grid) {
+  public character(String[] verbs, LinkedList<String> inv, room[][] grid) {//multidimensional array :)
     validVerbs = verbs;
     inventory =
         inv; // incompitable; do you want the string list to be turned into a string? or what?
@@ -66,11 +66,11 @@ public class character {
     currentPlayerInput = null;
 
     currentPlayerInput = convertIOToPlayerInput(inputArr);
-    if(currentPlayerInput != null){
+    if (currentPlayerInput != null) {
       if ((currentPlayerInput.getVerb() == "go")
-      || (currentPlayerInput.getVerb() == "pick")
-      || (currentPlayerInput.getVerb() == "look")) {
-      handleKeywords();
+          || (currentPlayerInput.getVerb() == "pick")
+          || (currentPlayerInput.getVerb() == "look")) {
+        handleKeywords();
       }
 
       if (currentPlayerInput.getVerb() != "go") {
@@ -80,7 +80,7 @@ public class character {
           System.out.println(currentRoomState.getDescription());
         }
       }
-    }else{
+    } else {
       System.out.println("I didn't understand that");
     }
   }
