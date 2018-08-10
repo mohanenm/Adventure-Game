@@ -9,7 +9,7 @@ public class room {
   // Member variables
   private String m_roomTitle;
   private String m_roomDescription;
-  private Stack<roomState> stateStack;//the state of the room is represented by a stack
+  private Stack<roomState> stateStack; // the state of the room is represented by a stack
 
   /*
   Blank constructor
@@ -33,7 +33,10 @@ public class room {
     m_roomDescription = new String();
   }
   // Full constructor
-  public room(String title, String description, Stack<roomState> sStack) {//uses a stack to represent the different states of the room
+  public room(
+      String title,
+      String description,
+      Stack<roomState> sStack) { // uses a stack to represent the different states of the room
     // Assign title + description
     m_roomTitle = title;
     m_roomDescription = description;

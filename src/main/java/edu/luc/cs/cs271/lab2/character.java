@@ -18,7 +18,8 @@ public class character {
   room currentRoom;
   playerInput currentPlayerInput;
 
-  public character(String[] verbs, LinkedList<String> inv, room[][] grid) {//multidimensional array :)
+  public character(
+      String[] verbs, LinkedList<String> inv, room[][] grid) { // multidimensional array :)
     validVerbs = verbs;
     inventory =
         inv; // incompitable; do you want the string list to be turned into a string? or what?

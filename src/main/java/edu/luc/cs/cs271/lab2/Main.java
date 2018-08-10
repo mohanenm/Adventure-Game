@@ -52,7 +52,7 @@ public class Main {
     LinkedList<String> roomOneObj;
     LinkedList<String> roomTwoObj;
 
-    room[][] roomGrid; //the rooms are represented by the multidimensional array
+    room[][] roomGrid; // the rooms are represented by the multidimensional array
     LinkedList<String> invLs;
 
     Map<playerInput, String> inputMapThree;
