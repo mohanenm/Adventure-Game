@@ -1,7 +1,5 @@
 package edu.luc.cs.cs271.lab2;
-
 import static org.junit.Assert.*;
-
 import java.util.*;
 import org.junit.After;
 import org.junit.Before;
