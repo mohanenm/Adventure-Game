@@ -1,4 +1,4 @@
-# Adventure Game By: Nicholas Carsello, Kurt Diall, and Ethan Mohan
+# Adventure Game By: Nicholas Carsello, Kurt Diall, and Ethan Mohan, Chicago, IL
 The final project group consists of Nicholas Carsello, Kurt Diall, and Ethan Mohan. The email of Nicholas Carsello is ncarsello@luc.edu. Outside class, we will make meetings Wednesday and Thursday nights weekly and through Google Docs and Slack as well.
 
 In our adventure game, our user will come across obstacles while embarking on a journey. They will make choices and the end result will be decided on what they choose. Some of these obstacles will be choosing where to go, what to eat, what to do when encountering another person, et cetera. The user will come across some items along the way and store them, including food, weapons, and gifts possibly.
